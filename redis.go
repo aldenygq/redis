@@ -38,3 +38,7 @@ func (r *RClient) GetValue(key string) (string, error) {
     }
     return val, nil
 }
+
+func (r *RClient) Close() {
+    r.Close()
+}
