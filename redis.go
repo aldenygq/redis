@@ -28,7 +28,14 @@ func (r *RClient) SetValue(key string, value string, expiration time.Duration) e
     }
     return nil
 }
+func (r *RClient) DeleteValue(key string) error {
+    err := r.Client.Del(context.Background(), key).Err()
+    if err != nil {
+        return err
+    }
 
+    return nil
+}
 func (r *RClient) GetValue(key string) (string, error) {
     val, err := r.Client.Get(context.Background(), key).Result()
     if err == redis.Nil {
